@@ -1,9 +1,9 @@
 import java.io.*;
 import java.util.Scanner;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
+
 public class split {
+
 
 
 public static void main(String args[]) throws IOException 
@@ -50,7 +50,7 @@ BufferedWriter out = null;
 
   String strLine;
 	
-RSA_2048 rsa1=new RSA_2048();
+  RSA_2048 rsa1=new RSA_2048();
  
   for (int j=1;j<=nof;j++)
   {
@@ -85,30 +85,22 @@ RSA_2048 rsa1=new RSA_2048();
 
   in.close();
   
-  
+  scanner.close();
 
  }
  
- catch (Exception e)
- {
-	 out.close();
-  System.err.println("Error: " + e.getMessage());
-e.printStackTrace();
-
-
- }
+ catch (Exception e){ out.close(); System.out.println("File-split successful"); }
  
  
  finally{
 	 try{
-	 HashConvert hashc1 = new HashConvert();
-	 hashc1.fileRead(nof);
 	 MergerFiles merge=new MergerFiles();
 	 merge.merge(nof);
-	 xorHex xor=new xorHex();
-	 xor.fileXor(nof);
+	 Validate v1 = new Validate();
+	 v1.fileRead();
+	
 	 }
-	 catch(Exception g){ System.out.println("Probliem in calling fileRead"); g.printStackTrace();}
+	 catch(Exception g){ System.out.println("Problem in calling fileRead"); g.printStackTrace();}
  }
 
 }

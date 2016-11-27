@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
  
 public class MergerFiles {
  
-	public static void merge(int nof) {
+	public void merge(int nof) throws IOException {
 	File[] files = new File[nof];
 		for(int i=1;i<=nof;i++){
 			String str="src/File"+i+".txt";
@@ -17,9 +17,10 @@ public class MergerFiles {
 		String mergedFilePath = "src/pcsfile.txt";
  		File mergedFile = new File(mergedFilePath);
  		mergeFiles(files, mergedFile);
+ 		
 	}
  
-	public static void mergeFiles(File[] files, File mergedFile) {
+	public void mergeFiles(File[] files, File mergedFile) {
  
 		FileWriter fstream = null;
 		BufferedWriter out = null;
@@ -31,18 +32,16 @@ public class MergerFiles {
 		}
  
 		for (File f : files) {
-			System.out.println("merging: " + f.getName());
+			System.out.println("Merging: " + f.getName());
 			FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
 				BufferedReader in = new BufferedReader(new InputStreamReader(fis));
- 
 				String aLine;
 				while ((aLine = in.readLine()) != null) {
 					out.write(aLine);
 					out.newLine();
 				}
- 
 				in.close();
 			} catch (IOException e) {
 				e.printStackTrace();

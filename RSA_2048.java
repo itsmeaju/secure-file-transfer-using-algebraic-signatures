@@ -15,30 +15,29 @@ public class RSA_2048 {
         private BigInteger phi;
         private BigInteger e;
         private BigInteger d;
-	private int bitlength = 1024;
-	private Random r;
-        private int blocksize = 256;
-
+     
         public RSA_2048() throws FileNotFoundException {
             File pfile = new File("src/p-file.txt");
             Scanner sc = new Scanner(pfile);
-			r=new Random();
-            while(sc.hasNextLine()){
+		     while(sc.hasNextLine()){
                 p= new BigInteger(sc.nextLine());
             }
             File qfile = new File("src/q-file.txt");
             Scanner sc2 = new Scanner(qfile);
             while(sc2.hasNextLine()){
                 q= new BigInteger(sc2.nextLine());
-
             }
             N = p.multiply(q);
             phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-            e = BigInteger.probablePrime(1024, r);
+            //e = BigInteger.probablePrime(1024, r);
+            Integer myint = new Integer(7);
+            e =BigInteger.valueOf(myint.intValue());
             while (phi.gcd(e).compareTo(BigInteger.ONE) > 0 && e.compareTo(phi) < 0 ) {
                 e.add(BigInteger.ONE);
             }
             d = e.modInverse(phi);
+            sc.close();
+            sc2.close();
         }
 
       
@@ -46,17 +45,17 @@ public class RSA_2048 {
         
 	public String convertString(String str){
 
-            System.out.println("Encrypting String: " + str);
-           // System.out.println("String in Bytes: " + bytesToString(str.getBytes()));
+            //System.out.println("Encrypting String: " + str);
+            // System.out.println("String in Bytes: " + bytesToString(str.getBytes()));
 
             // encrypt
             byte[] encrypted = this.encrypt(str.getBytes());
             return bytesToString(encrypted);
 
             // decrypt
-  //          byte[] decrypted = this.decrypt(encrypted);
-//            System.out.println("Decrypted String in Bytes: " +  bytesToString(decrypted));
-    //        System.out.println("Decrypted String: " + new String(decrypted));
+            // byte[] decrypted = this.decrypt(encrypted);
+            // System.out.println("Decrypted String in Bytes: " +  bytesToString(decrypted));
+            //  System.out.println("Decrypted String: " + new String(decrypted));
 
 		
 		}
