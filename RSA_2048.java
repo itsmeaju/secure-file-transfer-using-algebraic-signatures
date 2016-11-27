@@ -20,13 +20,13 @@ public class RSA_2048 {
         private int blocksize = 256;
 
         public RSA_2048() throws FileNotFoundException {
-            File pfile = new File("./p-file.txt");
+            File pfile = new File("src/p-file.txt");
             Scanner sc = new Scanner(pfile);
 			r=new Random();
             while(sc.hasNextLine()){
                 p= new BigInteger(sc.nextLine());
             }
-            File qfile = new File("./q-file.txt");
+            File qfile = new File("src/q-file.txt");
             Scanner sc2 = new Scanner(qfile);
             while(sc2.hasNextLine()){
                 q= new BigInteger(sc2.nextLine());
@@ -47,7 +47,7 @@ public class RSA_2048 {
 	public String convertString(String str){
 
             System.out.println("Encrypting String: " + str);
-            System.out.println("String in Bytes: " + bytesToString(str.getBytes()));
+           // System.out.println("String in Bytes: " + bytesToString(str.getBytes()));
 
             // encrypt
             byte[] encrypted = this.encrypt(str.getBytes());
