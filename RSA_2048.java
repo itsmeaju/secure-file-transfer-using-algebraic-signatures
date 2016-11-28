@@ -17,12 +17,12 @@ public class RSA_2048 {
         private BigInteger d;
      
         public RSA_2048() throws FileNotFoundException {
-            File pfile = new File("src/p-file.txt");
+            File pfile = new File("./p-file.txt");
             Scanner sc = new Scanner(pfile);
 		     while(sc.hasNextLine()){
                 p= new BigInteger(sc.nextLine());
             }
-            File qfile = new File("src/q-file.txt");
+            File qfile = new File("./q-file.txt");
             Scanner sc2 = new Scanner(qfile);
             while(sc2.hasNextLine()){
                 q= new BigInteger(sc2.nextLine());

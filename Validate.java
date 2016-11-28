@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class Validate {
 	public void fileRead() throws NoSuchAlgorithmException, IOException, InterruptedException {
-	     File testfile = new File("src/test.txt");
+	     File testfile = new File("./test.txt");
 	     RSA_2048 rsa1=new RSA_2048();
 		 Scanner sc = new Scanner(testfile);
 		 while(sc.hasNextLine()){
         	 
-        	File opfile = new File("src/testsign.txt");     // Destination File Location
+        	File opfile = new File("./testsign.txt");     // Destination File Location
         	String strLine = sc.nextLine();
         	
         	FileWriter fstream = null;
@@ -48,11 +48,11 @@ public class Validate {
 		Thread.sleep(1000);
 		System.out.println("....");
 		Thread.sleep(1000);
-        String digest = CRCHash.getDigest("src/testsign.txt");
+        String digest = CRCHash.getDigest("./testsign.txt");
  		System.out.println("Total CRC before:" + digest);
  	
 		
-		String digest3 = CRCHash.getDigest("src/pcsfile.txt");
+		String digest3 = CRCHash.getDigest("./pcsfile.txt");
  		System.out.println("Total CRC After:"+ digest3);
  		//System.out.println("YAYY!");
  		sc.close();

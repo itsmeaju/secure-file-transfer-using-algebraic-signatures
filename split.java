@@ -4,16 +4,16 @@ import java.util.Scanner;
 
 public class split {
 
+static int nof;
 
+public static void split1() throws IOException 
 
-public static void main(String args[]) throws IOException 
-
-{	int nof=0;
+{	
 BufferedWriter out = null;
  try{
 
- 							 // Reading file and getting no. of files to be generated
-  String inputfile = "src/test.txt";			 //  Source File Name.
+ 		nof=0;					 // Reading file and getting no. of files to be generated
+  String inputfile = "./test.txt";			 //  Source File Name.
   double nol = 5.0;					 //  No. of lines to be split and saved in each output file.
   File file = new File(inputfile);
   Scanner scanner = new Scanner(file);
@@ -51,12 +51,13 @@ BufferedWriter out = null;
   String strLine;
 	
   RSA_2048 rsa1=new RSA_2048();
+  
  
   for (int j=1;j<=nof;j++)
   {
 
 
-   FileWriter fstream1 = new FileWriter("src/File"+j+".txt");     // Destination File Location
+   FileWriter fstream1 = new FileWriter("./File"+j+".txt");     // Destination File Location
  
     out = new BufferedWriter(fstream1); 
  
@@ -89,10 +90,11 @@ BufferedWriter out = null;
 
  }
  
+ 
  catch (Exception e){ out.close(); System.out.println("File-split successful"); }
  
  
- finally{
+ /*finally{
 	 try{
 	 MergerFiles merge=new MergerFiles();
 	 merge.merge(nof);
@@ -101,8 +103,10 @@ BufferedWriter out = null;
 	
 	 }
 	 catch(Exception g){ System.out.println("Problem in calling fileRead"); g.printStackTrace();}
- }
+ }*/
 
 }
-
+public static int getnof(){
+	return nof;
+}
 } 

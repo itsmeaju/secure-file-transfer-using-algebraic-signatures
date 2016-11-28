@@ -11,10 +11,10 @@ public class MergerFiles {
 	public void merge(int nof) throws IOException {
 	File[] files = new File[nof];
 		for(int i=1;i<=nof;i++){
-			String str="src/File"+i+".txt";
+			String str="./File"+i+".txt";
 			files[i-1]=new File(str);
 		}
-		String mergedFilePath = "src/pcsfile.txt";
+		String mergedFilePath = "./pcsfile.txt";
  		File mergedFile = new File(mergedFilePath);
  		mergeFiles(files, mergedFile);
  		
