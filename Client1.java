@@ -1,67 +1,55 @@
-/*working client program*/
-
-/*import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.InetAddress;
-import java.net.Socket;
-*/
 import java.io.*;
 import java.net.*;
-
+import java.util.*;
+import java.security.NoSuchAlgorithmException;
 
 public class Client1
 {
  
     private static Socket socket;
- 
-    public static void main(String args[])
+
+    public static void main1()throws Exception
     {
        
-	try
-        {
-            String host = "localhost";
+	
+			String host = "localhost";
             int port = 25000;
             InetAddress address = InetAddress.getByName(host);
             socket = new Socket(address, port);
 			split.split1();
 			int nof=split.getnof();
+			File[] files = new File[nof];
 			for(int i=1;i<=nof;i++){
-				File myFile = new File("./File"+i+".txt");
-			while (true) {
-      
-				byte[] mybytearray = new byte[4096];
-				BufferedInputStream bis = new BufferedInputStream(new FileInputStream(myFile));
-				bis.read(mybytearray, 0, mybytearray.length);
-				OutputStream os = socket.getOutputStream();
-				os.write(mybytearray, 0, mybytearray.length);
-				os.flush();
-     // socket.close();
+					File myFile = new File("./File"+i+".txt");
+					files[i-1]=myFile;
 			}
-		}
-		
-        //}
-        }
-        catch (Exception exception)
-        {
-            exception.printStackTrace();
-        }
-		
-		
-        finally
-        {
-            //Closing the socket
-            try
-            {
-                socket.close();
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
+			
+
+
+			BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+			DataOutputStream dos = new DataOutputStream(bos);
+
+			dos.writeInt(files.length);
+
+			for(File file : files)
+			{
+				long length = file.length();
+				dos.writeLong(length);
+
+				String name = file.getName();
+				dos.writeUTF(name);
+
+				FileInputStream fis = new FileInputStream(file);
+				BufferedInputStream bis = new BufferedInputStream(fis);
+
+				int theByte = 0;
+				while((theByte = bis.read()) != -1) bos.write(theByte);
+
+				bis.close();
+			}
+
+			dos.close();
+			
+		}			
+
 }

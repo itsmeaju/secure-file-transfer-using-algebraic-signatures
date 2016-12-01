@@ -32,7 +32,8 @@ public class MergerFiles {
 		}
  
 		for (File f : files) {
-			System.out.println("Merging: " + f.getName());
+			//System.out.println("Merging: " + f.getName());
+			//System.out.println();
 			FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
